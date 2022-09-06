@@ -43,9 +43,18 @@ class _MoviesListingState extends State<MoviesListing> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     fetchMovies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Popular Movies'),
+      ),
       body: ListView.builder(
         itemCount: movies == null ? 0 : movies.length,
         itemBuilder: (context, index) {
@@ -154,6 +163,10 @@ class MovieTile extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Text(
               movies[index].overview,
+              style: const TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
           Divider(
